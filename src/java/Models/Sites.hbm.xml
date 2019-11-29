@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12 oct. 2019 20:12:49 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Models.Sites" table="sites" catalog="sitetour" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nom" type="string">
+            <column name="nom" length="100" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="500" not-null="true" />
+        </property>
+        <property name="lat" type="float">
+            <column name="lat" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="lng" type="float">
+            <column name="lng" precision="12" scale="0" not-null="true" />
+        </property>
+        <set name="siteImgses" table="site_imgs" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="site_id" not-null="true" />
+            </key>
+            <one-to-many class="Models.SiteImgs" />
+        </set>
+    </class>
+</hibernate-mapping>
